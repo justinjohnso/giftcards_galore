@@ -3,8 +3,8 @@
 import os
 import time
 from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.common.by import By
+# from selenium.webdriver.common.keys import Keys
+# from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait # available since 2.4.0
 from selenium.webdriver.support import expected_conditions as EC # available since 2.26.0
 
@@ -27,20 +27,27 @@ ITERATIONS = [3, 1, 12, 8]
 
 def giftcard_buyer():
     "Function to buy the giftcards"
-    driver = webdriver.Chrome('/Users/Justin/code/packages/chromedriver')
+
+    driver = webdriver.Chrome('/Users/Justin/code/packages/webdrivers/chromedriver')
+        # Path to your chrome webdriver file
     wait = WebDriverWait(driver, 10)
-    driver.get('http://www.amazon.com')
-    driver.find_element_by_link_text('Sign in').click()
+    # driver.get('http://www.amazon.com')
+    # driver.find_element_by_link_text('Sign in').click()
+    driver.get('https://www.amazon.com/asv/reload/')
+    driver.find_element_by_id('form-submit-button').click()
+    wait.until(EC.title_is('Amazon.com Sign In'))
     driver.find_element_by_id('ap_email').send_keys(AMAZON_USERNAME)
+    driver.find_element_by_id('ap_signin_existing_radio').click()
     driver.find_element_by_id('ap_password').send_keys(AMAZON_PASSWORD)
     driver.find_element_by_id('signInSubmit').click()
 
     i = 0
     for card in CARDS:
-        print "card: %r" %(card)
+        print("card: %r" %(card))
         for iteration in range(ITERATIONS[i]):
-            print "iteration: %r" %(iteration + 1)
-            driver.get('https://www.amazon.com/asv/reload/')
+            print("iteration: %r" %(iteration + 1))
+            if driver.title != 'Reload Your Balance':
+                driver.get('https://www.amazon.com/asv/reload/')
             wait.until(EC.title_is('Reload Your Balance'))
             driver.find_element_by_id('asv-manual-reload-amount').send_keys('0.5')
             time.sleep(1)
@@ -51,6 +58,7 @@ def giftcard_buyer():
                 time.sleep(1)
             # driver.find_element_by_id('form-submit-button').click()
             # time.sleep(2)
+            driver.get('https://www.amazon.com/asv/reload/')
         i += 1
 
 giftcard_buyer()
