@@ -1,7 +1,8 @@
-Python script to auto-buy n Amazon giftcards per payment method
+# Giftcards Galore!
+Python script to auto-buy Amazon giftcards
 
-Based off of:
-<br>
-<br> 
-https://github.com/ageoldpun/amazon_gifts <br>
+## Dependencies:
+
+Based off of: 
+https://github.com/ageoldpun/amazon_gifts
 http://pastebin.com/UW6eC3rn
