@@ -28,6 +28,9 @@ define in the script):
 * `AMAZON_PASSWORD`
 * `CARD_NUMBERS`
 
+You need your card numbers because Amazon will ask to confirm each one for the
+first iteration of a given card.
+
 These are arrays that correspond with the (0-indexed) list of cards on your
 [Amazon Wallet](https://www.amazon.com/gp/wallet) page:
 
