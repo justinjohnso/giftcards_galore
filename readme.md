@@ -47,5 +47,3 @@ window and start the script.
 
 For testing purposes, I recommend either starting with one iteration per card,
 or commenting out line 57. 
-
----
