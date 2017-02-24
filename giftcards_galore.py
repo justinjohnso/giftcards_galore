@@ -1,4 +1,4 @@
-"""Autobuy $.50 Amazon Giftcards"""
+"""Autobuy Amazon Giftcards"""
 
 import os
 import time
@@ -13,7 +13,7 @@ AMAZON_USERNAME = os.getenv('AMAZON_USERNAME')
     # Your Amazon username (email)
 AMAZON_PASSWORD = os.getenv('AMAZON_PASSWORD')
     # Your Amazon password
-CARDS = [1, 3, 2, 4]
+CARDS = [1, 2, 3, 4]
     # 0-indexed array of your Amazon payment methods
     # Refer to https://www.amazon.com/gp/wallet
 CARD_NUMBERS = [
@@ -31,8 +31,6 @@ def giftcard_buyer():
     driver = webdriver.Chrome('/Users/Justin/code/packages/webdrivers/chromedriver')
         # Path to your chrome webdriver file
     wait = WebDriverWait(driver, 10)
-    # driver.get('http://www.amazon.com')
-    # driver.find_element_by_link_text('Sign in').click()
     driver.get('https://www.amazon.com/asv/reload/')
     driver.find_element_by_id('form-submit-button').click()
     wait.until(EC.title_is('Amazon.com Sign In'))
@@ -43,9 +41,9 @@ def giftcard_buyer():
 
     i = 0
     for card in CARDS:
-        print("card: %r" %(card))
+        print "card: %r" %(card)
         for iteration in range(ITERATIONS[i]):
-            print("iteration: %r" %(iteration + 1))
+            print "iteration: %r" %(iteration + 1)
             if driver.title != 'Reload Your Balance':
                 driver.get('https://www.amazon.com/asv/reload/')
             wait.until(EC.title_is('Reload Your Balance'))
@@ -56,8 +54,8 @@ def giftcard_buyer():
                 driver.find_element_by_name('addCardNumber').send_keys(CARD_NUMBERS[card - 1])
                 driver.find_element_by_xpath("//button[contains(.,'Confirm Card')]").click()
                 time.sleep(1)
-            # driver.find_element_by_id('form-submit-button').click()
-            # time.sleep(2)
+            driver.find_element_by_id('form-submit-button').click()
+            time.sleep(1)
             driver.get('https://www.amazon.com/asv/reload/')
         i += 1
 
