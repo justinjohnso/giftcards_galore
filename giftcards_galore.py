@@ -7,6 +7,7 @@ from selenium import webdriver
 # from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait # available since 2.4.0
 from selenium.webdriver.support import expected_conditions as EC # available since 2.26.0
+from selenium.common.exceptions import NoSuchElementException
 
 # User-defined variables
 AMAZON_USERNAME = os.getenv('AMAZON_USERNAME')
@@ -22,7 +23,7 @@ CARD_NUMBERS = [
     os.getenv('CFU'),
     os.getenv('CF2')]
     # Your credit card numbers, corresponding to the index of each card in the CARDS array
-ITERATIONS = [3, 1, 12, 8]
+ITERATIONS = [1, 1, 1, 1]
     # Iterations array, corresponds to the number of purchases for each card
 
 def giftcard_buyer():
@@ -41,9 +42,9 @@ def giftcard_buyer():
 
     i = 0
     for card in CARDS:
-        print "card: %r" %(card)
+        # print "card: %r" %(card)
         for iteration in range(ITERATIONS[i]):
-            print "iteration: %r" %(iteration + 1)
+            # print "iteration: %r" %(iteration + 1)
             if driver.title != 'Reload Your Balance':
                 driver.get('https://www.amazon.com/asv/reload/')
             wait.until(EC.title_is('Reload Your Balance'))
@@ -56,6 +57,13 @@ def giftcard_buyer():
                 time.sleep(1)
             driver.find_element_by_id('form-submit-button').click()
             time.sleep(1)
+            try:
+                driver.find_element_by_xpath("//span[contains(.,'this message again')]").click()
+                time.sleep(.5)
+                driver.find_element_by_id('asv-reminder-action-primary').click()
+                time.sleep(1)
+            except NoSuchElementException:
+                pass
             driver.get('https://www.amazon.com/asv/reload/')
         i += 1
 
