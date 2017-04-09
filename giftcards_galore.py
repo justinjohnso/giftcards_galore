@@ -29,7 +29,7 @@ ITERATIONS = [1, 1, 1, 1]
 def giftcard_buyer():
     "Function to buy the giftcards"
 
-    driver = webdriver.Chrome('/Users/Justin/code/packages/webdrivers/chromedriver')
+    driver = webdriver.Chrome(os.getenv('CHROME_DRIVER'))
         # Path to your chrome webdriver file
     wait = WebDriverWait(driver, 10)
     driver.get('https://www.amazon.com/asv/reload/')
@@ -42,9 +42,9 @@ def giftcard_buyer():
 
     i = 0
     for card in CARDS:
-        # print "card: %r" %(card)
+        print "card: %r" %(card)
         for iteration in range(ITERATIONS[i]):
-            # print "iteration: %r" %(iteration + 1)
+            print "iteration: %r" %(iteration + 1)
             if driver.title != 'Reload Your Balance':
                 driver.get('https://www.amazon.com/asv/reload/')
             wait.until(EC.title_is('Reload Your Balance'))
