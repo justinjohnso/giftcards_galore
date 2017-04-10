@@ -27,19 +27,18 @@ define in the script):
 * `AMAZON_USERNAME`
 * `AMAZON_PASSWORD`
 * `CARD_NUMBERS`
+* `CHROME_DRIVER`
 
 You need your card numbers because Amazon will ask to confirm each one for the
 first iteration of a given card.
+`CHROME_DRIVER` is the location of your Chrome Webdriver (line 31). Example:
+`/Users/Leeroy/Downloads/webdrivers/chromedriver`
 
 These are arrays that correspond with the (0-indexed) list of cards on your
 [Amazon Wallet](https://www.amazon.com/gp/wallet) page:
 
 * `CARDS`
 * `ITERATIONS`
-
-This is the location of your Chrome Webdriver:
-
-* `driver` (line 31)
 
 ---
 
