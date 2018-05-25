@@ -1,3 +1,6 @@
+#### Note: Amazon changed the layout and IDs of their giftcard reload page, so this script is currently broken. Feel free to make an issue and/or fork the script if you want to make fixes yourself.
+---
+
 # Giftcards Galore!
 Python script to auto-buy Amazon giftcards
 
