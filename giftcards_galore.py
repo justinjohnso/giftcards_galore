@@ -2,6 +2,7 @@
 
 import os
 import time
+import random
 from selenium import webdriver
 # from selenium.webdriver.common.keys import Keys
 # from selenium.webdriver.common.by import By
@@ -49,14 +50,14 @@ def giftcard_buyer():
                 driver.get('https://www.amazon.com/asv/reload/')
             wait.until(EC.title_is('Reload Your Balance'))
             driver.find_element_by_id('asv-manual-reload-amount').send_keys('1')
-            time.sleep(1)
+            time.sleep(randint(120,361)
             driver.find_elements_by_class_name('pmts-credit-card-row')[card].click()
             if iteration == 0:
                 driver.find_element_by_name('addCardNumber').send_keys(CARD_NUMBERS[card - 1])
                 driver.find_element_by_xpath("//button[contains(.,'Confirm Card')]").click()
                 time.sleep(1)
             driver.find_element_by_id('form-submit-button').click()
-            time.sleep(1)
+            time.sleep()
             try:
                 driver.find_element_by_xpath("//span[contains(.,'this message again')]").click()
                 time.sleep(.5)
