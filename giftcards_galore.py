@@ -48,7 +48,7 @@ def giftcard_buyer():
             if driver.title != 'Reload Your Balance':
                 driver.get('https://www.amazon.com/asv/reload/')
             wait.until(EC.title_is('Reload Your Balance'))
-            driver.find_element_by_id('asv-manual-reload-amount').send_keys('0.5')
+            driver.find_element_by_id('asv-manual-reload-amount').send_keys('1')
             time.sleep(1)
             driver.find_elements_by_class_name('pmts-credit-card-row')[card].click()
             if iteration == 0:
