@@ -37,7 +37,7 @@ def giftcard_buyer():
     driver.find_element_by_id('form-submit-button').click()
     wait.until(EC.title_is('Amazon.com Sign In'))
     driver.find_element_by_id('ap_email').send_keys(AMAZON_USERNAME)
-    driver.find_element_by_id('ap_signin_existing_radio').click()
+    driver.find_element_by_id('continue').click()
     driver.find_element_by_id('ap_password').send_keys(AMAZON_PASSWORD)
     driver.find_element_by_id('signInSubmit').click()
 
