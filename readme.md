@@ -30,6 +30,7 @@ These are environment variables:
 * `AMAZON_USERNAME`
 * `AMAZON_PASSWORD`
 * `CARD_NUMBERS`
+* `GIFT_CARD_AMOUNT`
 
 You can define using whatever method works
 best for you (`export` in `.bash_profile`, define in Python console, or just
@@ -40,6 +41,7 @@ AMAZON_USERNAME=user@domain.com
 AMAZON_PASSWORD=password
 CC0=1234567890123456
 CC1=7890123456789012
+GIFT_CARD_AMOUNT=1.00
 ```
 
 You need your card numbers because Amazon will ask to confirm each one for the
