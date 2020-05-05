@@ -27,6 +27,9 @@ CARD_NUMBERS = [
 ITERATIONS = [1, 1, 1, 1]
     # Iterations array, corresponds to the number of purchases for each card
 
+class AuthenticationError(Exception):
+    pass
+    
 def giftcard_buyer():
     "Function to buy the giftcards"
 
@@ -40,6 +43,11 @@ def giftcard_buyer():
     driver.find_element_by_id('continue').click()
     driver.find_element_by_id('ap_password').send_keys(AMAZON_PASSWORD)
     driver.find_element_by_id('signInSubmit').click()
+    try:
+        driver.find_element_by_xpath("//h1[contains(.,'Authentication Required')]")
+        raise AuthenticationError("You need to manually confirm your login")
+    except NoSuchElementException:
+        pass
 
     i = 0
     for card in CARDS:
