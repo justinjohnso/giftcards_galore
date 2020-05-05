@@ -5,8 +5,6 @@ import time
 import random
 from dotenv import load_dotenv
 from selenium import webdriver
-# from selenium.webdriver.common.keys import Keys
-# from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait # available since 2.4.0
 from selenium.webdriver.support import expected_conditions as EC # available since 2.26.0
 from selenium.common.exceptions import NoSuchElementException
@@ -19,16 +17,14 @@ AMAZON_USERNAME = os.getenv('AMAZON_USERNAME')
     # Your Amazon username (email)
 AMAZON_PASSWORD = os.getenv('AMAZON_PASSWORD')
     # Your Amazon password
-CARDS = [1, 2, 3, 4]
+CARDS = [0, 1]
     # 0-indexed array of your Amazon payment methods
     # Refer to https://www.amazon.com/gp/wallet
 CARD_NUMBERS = [
-    os.getenv('TD_DEBIT'),
-    os.getenv('CSR'),
-    os.getenv('CFU'),
-    os.getenv('CF2')]
+    os.getenv('CC0'),
+    os.getenv('CC1')]
     # Your credit card numbers, corresponding to the index of each card in the CARDS array
-ITERATIONS = [1, 1, 1, 1]
+ITERATIONS = [1, 1]
     # Iterations array, corresponds to the number of purchases for each card
 
 class AuthenticationError(Exception):
