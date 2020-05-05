@@ -37,8 +37,8 @@ class AuthenticationError(Exception):
 def giftcard_buyer():
     "Function to buy the giftcards"
 
-    driver = webdriver.Chrome(os.getenv('CHROME_DRIVER'))
-        # Path to your chrome webdriver file
+    driver = webdriver.Chrome()
+        # Ensure Chrome Webdriver is on System PATH
     wait = WebDriverWait(driver, 10)
     driver.get('https://www.amazon.com/asv/reload/')
     driver.find_element_by_id('form-submit-button').click()
