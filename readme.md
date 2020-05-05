@@ -21,7 +21,7 @@ http://pastebin.com/UW6eC3rn
 
 ### Installation/Setup:
 Install Selenium using `pip install selenium`</br>
-Download the Chrome Webdriver and put it in a location of your choice</br>
+Download the Chrome Webdriver and ensure it can be found on your system [PATH](http://en.wikipedia.org/wiki/PATH_%28variable%29)</br>
 Install python-dotenv using `pip install python-dotenv`
 
 #### Variables:
@@ -30,7 +30,6 @@ These are environment variables:
 * `AMAZON_USERNAME`
 * `AMAZON_PASSWORD`
 * `CARD_NUMBERS`
-* `CHROME_DRIVER`
 
 You can define using whatever method works
 best for you (`export` in `.bash_profile`, define in Python console, or just
@@ -45,9 +44,6 @@ CC1=7890123456789012
 
 You need your card numbers because Amazon will ask to confirm each one for the
 first iteration of a given card.
-
-`CHROME_DRIVER` is the location of your Chrome Webdriver (line 31).
-Example: `/Users/Spock/Downloads/webdrivers/chromedriver`
 
 These are arrays that correspond with the (0-indexed) list of cards on your
 [Amazon Wallet](https://www.amazon.com/gp/wallet) page:
