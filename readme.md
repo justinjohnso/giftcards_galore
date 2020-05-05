@@ -15,22 +15,33 @@ http://pastebin.com/UW6eC3rn
 * Selenium
 * Chrome Webdriver
   ([download](https://sites.google.com/a/chromium.org/chromedriver/downloads))
+* python-dotenv
 
 ---
 
 ### Installation/Setup:
 Install Selenium using `pip install selenium`</br>
-Download the Chrome Webdriver and put it in a location of your choice
+Download the Chrome Webdriver and put it in a location of your choice</br>
+Install python-dotenv using `pip install python-dotenv`
 
 #### Variables:
-These are environment variables that you can define using whatever method works
-best for you (`export` in `.bash_profile`, define in Python console or just
-define in the script):
+These are environment variables:
 
 * `AMAZON_USERNAME`
 * `AMAZON_PASSWORD`
 * `CARD_NUMBERS`
 * `CHROME_DRIVER`
+
+You can define using whatever method works
+best for you (`export` in `.bash_profile`, define in Python console, or just
+define in the script), or you can create a .env file in the following format:
+```
+# .env file
+AMAZON_USERNAME=user@domain.com
+AMAZON_PASSWORD=password
+CC0=1234567890123456
+CC1=7890123456789012
+```
 
 You need your card numbers because Amazon will ask to confirm each one for the
 first iteration of a given card.
