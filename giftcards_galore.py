@@ -60,7 +60,7 @@ def giftcard_buyer():
                 driver.get('https://www.amazon.com/asv/reload/')
             wait.until(EC.title_is('Reload Your Balance'))
             driver.find_element_by_id('asv-manual-reload-amount').send_keys(str(GIFT_CARD_AMOUNT))
-            time.sleep(randint(120,361)
+            time.sleep(random.randint(120,361)
             driver.find_elements_by_class_name('pmts-credit-card-row')[card].click()
             if iteration == 0:
                 driver.find_element_by_name('addCardNumber').send_keys(CARD_NUMBERS[card - 1])
