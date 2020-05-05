@@ -50,7 +50,7 @@ def giftcard_buyer():
             wait.until(EC.title_is('Reload Your Balance'))
             driver.find_element_by_id('asv-manual-reload-amount').send_keys('0.5')
             time.sleep(1)
-            driver.find_elements_by_class_name('pmts-instrument-box')[card].click()
+            driver.find_elements_by_class_name('pmts-credit-card-row')[card].click()
             if iteration == 0:
                 driver.find_element_by_name('addCardNumber').send_keys(CARD_NUMBERS[card - 1])
                 driver.find_element_by_xpath("//button[contains(.,'Confirm Card')]").click()
