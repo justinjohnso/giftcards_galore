@@ -67,7 +67,7 @@ def giftcard_buyer():
                 driver.find_element_by_xpath("//button[contains(.,'Confirm Card')]").click()
                 time.sleep(1)
             driver.find_element_by_id('form-submit-button').click()
-            time.sleep()
+            time.sleep(1)
             try:
                 driver.find_element_by_xpath("//span[contains(.,'this message again')]").click()
                 time.sleep(.5)
