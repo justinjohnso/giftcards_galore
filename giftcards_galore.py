@@ -17,21 +17,20 @@ AMAZON_USERNAME = os.getenv('AMAZON_USERNAME')
     # Your Amazon username (email)
 AMAZON_PASSWORD = os.getenv('AMAZON_PASSWORD')
     # Your Amazon password
-CARDS = [0, 1]
+CARDS = [0]
     # 0-indexed array of your Amazon payment methods
     # Refer to https://www.amazon.com/gp/wallet
 CARD_NUMBERS = [
-    os.getenv('CC0'),
-    os.getenv('CC1')]
+    os.getenv('CC0')]
     # Your credit card numbers, corresponding to the index of each card in the CARDS array
-ITERATIONS = [1, 1]
+ITERATIONS = [1]
     # Iterations array, corresponds to the number of purchases for each card
 GIFT_CARD_AMOUNT = os.getenv('GIFT_CARD_AMOUNT')
     # Amount to be loaded onto each gift card
 
 class AuthenticationError(Exception):
     pass
-    
+
 def giftcard_buyer():
     "Function to buy the giftcards"
 
@@ -70,7 +69,7 @@ def giftcard_buyer():
                 except NoSuchElementException:
                     pass
             else:
-                time.sleep(random.randint(120,361)
+                time.sleep(random.randint(120,361))
             driver.find_element_by_id('form-submit-button').click()
             time.sleep(1)
             try:
