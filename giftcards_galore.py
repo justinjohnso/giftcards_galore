@@ -34,12 +34,15 @@ class AuthenticationError(Exception):
 def giftcard_buyer():
     "Function to buy the giftcards"
 
-    driver = webdriver.Chrome()
+    options = webdriver.ChromeOptions()
+    options.add_argument('start-maximized')
+    options.add_argument('disable-infobars')
+    driver = webdriver.Chrome(chrome_options=options)
         # Ensure Chrome Webdriver is on System PATH
     wait = WebDriverWait(driver, 10)
     driver.get('https://www.amazon.com/asv/reload/')
     driver.find_element_by_id('form-submit-button').click()
-    wait.until(EC.title_is('Amazon.com Sign In'))
+    WebDriverWait(driver, 10).until(EC.title_contains("Amazon Sign-In"))
     driver.find_element_by_id('ap_email').send_keys(AMAZON_USERNAME)
     driver.find_element_by_id('continue').click()
     driver.find_element_by_id('ap_password').send_keys(AMAZON_PASSWORD)
@@ -60,24 +63,32 @@ def giftcard_buyer():
             wait.until(EC.title_is('Reload Your Balance'))
             driver.find_element_by_id('asv-manual-reload-amount').send_keys(str(GIFT_CARD_AMOUNT))
             time.sleep(0.5)
-            driver.find_elements_by_class_name('pmts-credit-card-row')[card].click()
+            try:
+                driver.find_elements_by_class_name('pmts-credit-card-row')[card].click()
+                driver.find_element_by_id('form-submit-button').click()
+                time.sleep(5)
+            except IndexError:
+                # Need to give password again
+                driver.find_element_by_id('form-submit-button').click()
+                driver.find_element_by_id('ap_password').send_keys(AMAZON_PASSWORD)
+                driver.find_element_by_id('signInSubmit').click()
             if iteration == 0:
                 try:
-                    driver.find_element_by_name('addCardNumber').send_keys(CARD_NUMBERS[card - 1])
-                    driver.find_element_by_xpath("//button[contains(.,'Confirm Card')]").click()
-                    time.sleep(1)
+                    driver.find_element_by_xpath("//input[contains(@name,'addCreditCardNumber')]").send_keys(CARD_NUMBERS[card])
+                    driver.find_element_by_xpath("//button[contains(@aria-label,'Verify card')]").click()
+                    time.sleep(5)
+                    driver.find_element_by_id('form-submit-button').click()
+                    time.sleep(5)
                 except NoSuchElementException:
                     pass
             else:
                 time.sleep(random.randint(120,361))
-            driver.find_element_by_id('form-submit-button').click()
-            time.sleep(1)
             try:
                 driver.find_element_by_xpath("//span[contains(.,'this message again')]").click()
                 time.sleep(.5)
                 driver.find_element_by_id('asv-reminder-action-primary').click()
                 time.sleep(1)
-            except NoSuchElementException:
+            except NoSuchElementException, ElementNotInteractableException:
                 pass
             driver.get('https://www.amazon.com/asv/reload/')
         i += 1
