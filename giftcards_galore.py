@@ -55,9 +55,8 @@ def giftcard_buyer():
 
     i = 0
     for card in CARDS:
-        print "card: %r" %(card)
+        print "Starting Card # %r" %(card)
         for iteration in range(ITERATIONS[i]):
-            print "iteration: %r" %(iteration + 1)
             if driver.title != 'Reload Your Balance':
                 driver.get('https://www.amazon.com/asv/reload/')
             wait.until(EC.title_is('Reload Your Balance'))
@@ -91,6 +90,10 @@ def giftcard_buyer():
             except NoSuchElementException, ElementNotInteractableException:
                 pass
             driver.get('https://www.amazon.com/asv/reload/')
+            print "Completed iteration %r" %(iteration + 1)
+        print "Completed card # %r" %(card)
         i += 1
+    print "Finished!"
+    input("Press any key to close")
 
 giftcard_buyer()
