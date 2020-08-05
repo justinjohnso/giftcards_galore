@@ -60,5 +60,4 @@ These are arrays that correspond with the (0-indexed) list of cards on your
 In terminal, run `python giftcards_galore.py`. Selenium will open a new Chrome
 window and start the script.
 
-For testing purposes, I recommend either starting with one iteration per card,
-or commenting out line 57. 
+For testing purposes, I recommend starting with one iteration per card. 
