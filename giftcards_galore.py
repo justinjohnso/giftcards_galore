@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 from selenium import webdriver
 from selenium.webdriver.support.ui import WebDriverWait # available since 2.4.0
 from selenium.webdriver.support import expected_conditions as EC # available since 2.26.0
-from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import NoSuchElementException, ElementNotInteractableException
 
 # Load env variables from ".env" file in the same folder
 load_dotenv()
@@ -107,13 +107,13 @@ def giftcard_buyer():
                 time.sleep(.5)
                 driver.find_element_by_id('asv-reminder-action-primary').click()
                 time.sleep(1)
-            except NoSuchElementException, ElementNotInteractableException:
+            except (NoSuchElementException, ElementNotInteractableException):
                 pass
             driver.get('https://www.amazon.com/asv/reload/')
             print "Completed iteration %r" %(iteration + 1)
         print "Completed card # %r" %(card)
         i += 1
+    driver.quit()
     print "Finished!"
-    input("Press any key to close")
 
 giftcard_buyer()
